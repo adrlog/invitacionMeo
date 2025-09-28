@@ -12,18 +12,21 @@ export default function Invitacion({ isActive }) {
     };
   }, []);
 
+  const isIOS = () => {
+    if (typeof navigator === "undefined") return false;
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  };
+
   const mensaje = "Mi primer";
   const mensaje2 = "añito";
   const mensaje3 = "y bautizo";
-
-console.log(isActive)
 
   return (
     <Box
       className={isActive ? "is-active" : ""}
       sx={{
         width: "100%",
-        height: "150vh",
+        height: isIOS()? "100dvh" : "150vh",
         background: "linear-gradient(to bottom, #e3f2fd, #ffffff)",
         position: "relative",
         overflow: "hidden",

@@ -6,9 +6,11 @@ import 'swiper/css/pagination';
 import { EffectCube, Pagination } from 'swiper/modules';
 import Invitacion from './Invitacion';
 import InvitacionFormal from './InvitacionFormal';
+import './index.css';
 
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
+
 
   return (
     <Swiper
@@ -23,7 +25,6 @@ export default function App() {
       pagination={true}
       modules={[EffectCube, Pagination]}
       className="mySwiper"
-      style={{ width: '100vw', height: '100vh' }}
       onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
     >
       <SwiperSlide>
