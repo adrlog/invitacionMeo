@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import familia from "./assets/meo.png";
+import familia from "./assets/familia.jpg";
 import "./InvitacionFamiliar.css";
 
 export default function InvitacionFormal({ isActive }) {
@@ -236,7 +236,7 @@ export default function InvitacionFormal({ isActive }) {
               }}
               onClick={() =>
                 window.open(
-                  "https://www.google.com/maps/place/Salon%2FJard%C3%ADn+El+viejo+pirul/@19.4791982,-98.8741156,19z/data=!4m15!1m8!3m7!1s0x85d1e712333e6aa5:0x4e63eb22d648b05b!2sSan+Luis+Huexotla,+M%C3%A9x.!3b1!8m2!3d19.4806477!4d-98.8652244!16s%2Fg%2F1tp27mcv!3m5!1s0x85d1e71b6f2f13c3:0xb411dcd497c49a52!8m2!3d19.4794228!4d-98.8739484!16s%2Fg%2F11fy_1_4p5?entry=ttu&g_ep=EgoyMDI1MDkyNC4wIKXMDSoASAFQAw%3D%3D",
+                  "https://www.google.com/maps/place/SALONES+LAS+%C3%81GUILAS/@19.4791557,-98.8746728,21z/data=!4m6!3m5!1s0x85d1e7132fe4312b:0x8fc8ecdf9676afdd!8m2!3d19.4791287!4d-98.8745618!16s%2Fg%2F11b6hqbfcm?entry=ttu&g_ep=EgoyMDI1MDkyNC4wIKXMDSoASAFQAw%3D%3D",
                   "_blank"
                 )
               }
