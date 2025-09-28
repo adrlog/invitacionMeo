@@ -1,48 +1,46 @@
+/* 🎈 Globos flotando */
 .globo {
-  position: absolute;
-  animation: flotar 3s infinite alternate ease-in-out;
+  animation: flotar 4s ease-in-out infinite alternate;
 }
 
 @keyframes flotar {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
 }
 
+/* 🔥 Flama de la vela */
+.flama {
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #ffeb3b, #ff9800);
+  border-radius: 50%;
+  margin-bottom: -4px;
+  animation: flame 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* 🔡 Letras con animación de entrada */
 .letra {
   opacity: 0;
   transform: translateY(-50px);
-  animation: letraAnim 0.8s forwards;
+  animation: letraEntrada 0.8s ease-out forwards;
 }
 
-.letra:nth-child(1) { animation-delay: 0.15s; }
-.letra:nth-child(2) { animation-delay: 0.30s; }
-.letra:nth-child(3) { animation-delay: 0.45s; }
-.letra:nth-child(4) { animation-delay: 0.60s; }
-.letra:nth-child(5) { animation-delay: 0.75s; }
-.letra:nth-child(6) { animation-delay: 0.90s; }
-.letra:nth-child(7) { animation-delay: 1.05s; }
-.letra:nth-child(8) { animation-delay: 1.20s; }
-.letra:nth-child(9) { animation-delay: 1.35s; }
-
-@keyframes letraAnim {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.imagen-central {
-  animation: zoomIn 1.5s ease-out;
-}
-
-@keyframes zoomIn {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.flama {
-  animation: flamaAnim 0.3s infinite alternate ease-in-out;
-}
-
-@keyframes flamaAnim {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
+@keyframes letraEntrada {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

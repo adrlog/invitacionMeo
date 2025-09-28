@@ -1,64 +1,26 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useEffect } from "react";
 import { Box } from "@mui/material";
-import meo from "./assets/meo.png"
+import meo from "./assets/meo.png";
+import "./InvitacionCSS.css";
 
-export default function Invitacion({isActive}) {
-  const globosRef = useRef([]);
-  const flameRef = useRef(null);
-  const letrasRef = useRef([]);
-
+export default function Invitacion({ isActive }) {
   useEffect(() => {
-    document.body.style.overflow = "hidden"; // deshabilita scroll global
+    // 🔹 bloquea scroll global al montar
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto"; // restaura al desmontar
+      document.body.style.overflow = "auto"; // lo restaura al desmontar
     };
   }, []);
-
-
-  useEffect(() => {
-    // Animación flotante de globos
-    globosRef.current.forEach((globo, i) => {
-      gsap.to(globo, {
-        y: "-=20",
-        duration: 3 + Math.random() * 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: i * 0.2,
-      });
-    });
-
-    // Flama de la vela
-    if (flameRef.current) {
-      gsap.to(flameRef.current, {
-        scale: 1.1,
-        duration: 0.3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-
-    // Animación de entrada para cada letra
-    letrasRef.current.forEach((letra, i) => {
-      gsap.from(letra, {
-        y: -50,
-        opacity: 0,
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: "bounce.out",
-      });
-    });
-  }, [isActive]);
 
   const mensaje = "Mi primer";
   const mensaje2 = "añito";
   const mensaje3 = "y bautizo";
 
+console.log(isActive)
 
   return (
     <Box
+      className={isActive ? "is-active" : ""}
       sx={{
         width: "100%",
         height: "150vh",
@@ -70,16 +32,16 @@ export default function Invitacion({isActive}) {
         alignItems: "flex-start",
         flexDirection: "column",
         fontFamily: "'Poppins', sans-serif",
-        overflowY: "hidden"
+        overflowY: "hidden",
       }}
     >
-      {/* Globos flotando en el fondo */}
+      {/* 🌈 Globos flotando en el fondo */}
       {[...Array(30)].map((_, i) => {
         const size = 60 + Math.random() * 40;
         return (
           <div
             key={i}
-            ref={(el) => (globosRef.current[i] = el)}
+            className={isActive ? "globo" : ""}
             style={{
               position: "absolute",
               top: `${5 + Math.random() * 60}%`,
@@ -90,6 +52,7 @@ export default function Invitacion({isActive}) {
               flexDirection: "column",
               alignItems: "center",
               zIndex: 1,
+              animationDelay: `${i * 0.2}s`, // 🔹 escalonado
             }}
           >
             <div
@@ -97,7 +60,8 @@ export default function Invitacion({isActive}) {
                 width: `${size}px`,
                 height: `${size * 1.2}px`,
                 borderRadius: "50%",
-                background: "radial-gradient(circle at 30% 30%, #ffffff, #90caf9)",
+                background:
+                  "radial-gradient(circle at 30% 30%, #ffffff, #90caf9)",
                 boxShadow: "0 6px 15px rgba(0,0,0,0.15)",
               }}
             />
@@ -105,7 +69,8 @@ export default function Invitacion({isActive}) {
               style={{
                 width: "2px",
                 height: "40px",
-                background: "linear-gradient(to bottom, #dfe4ea, #a4b0be)",
+                background:
+                  "linear-gradient(to bottom, #dfe4ea, #a4b0be)",
                 marginTop: "2px",
                 borderRadius: "2px",
                 transform: "rotate(5deg)",
@@ -115,11 +80,11 @@ export default function Invitacion({isActive}) {
         );
       })}
 
-      {/* Contenido principal al centro */}
+      {/* 📌 Contenido principal */}
       <Box
         sx={{
           position: "absolute",
-          top:80,
+          top: 80,
           zIndex: 2,
           height: "88vh",
           width: "100%",
@@ -128,119 +93,65 @@ export default function Invitacion({isActive}) {
           alignItems: "center",
         }}
       >
-        {/* Mensaje en tira de letras */}
+        {/* ✨ Letras con animación de entrada */}
+        {[mensaje, mensaje2, mensaje3].map((texto, idx) => (
+          <Box
+            key={idx}
+            sx={{
+              display: "flex",
+              gap: "6px",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              mb: 3,
+            }}
+          >
+            {texto.split("").map((char, i) => (
+              <Box
+                key={i}
+                className={isActive ? "letra" : ""}
+                style={{
+                  animationDelay: `${i * 0.15}s`, // escalonado como en GSAP
+                }}
+                sx={{
+                  background: "#90caf9",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  borderRadius: "6px",
+                  padding: "8px 6px",
+                  minWidth: "20px",
+                  textAlign: "center",
+                  boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+                  fontFamily: "'Dancing Script', cursive",
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </Box>
+            ))}
+          </Box>
+        ))}
+
+        {/* 📸 Imagen central */}
         <Box
           sx={{
-            display: "flex",
-            gap: "6px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            mb: 3,
+            width: "160px",
+            height: "160px",
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "5px solid #90caf9",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+            zIndex: 3,
+            background: "#fff",
           }}
         >
-          {mensaje.split("").map((char, i) => (
-            <Box
-              key={i}
-              ref={(el) => (letrasRef.current[i] = el)}
-              sx={{
-                background: "#90caf9",
-                color: "#fff",
-                fontWeight: "bold",
-                fontSize: "16px",
-                borderRadius: "6px",
-                padding: "8px 6px",
-                minWidth: "20px",
-                textAlign: "center",
-                boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
-                fontFamily: "'Dancing Script', cursive",
-              }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </Box>
-          ))}
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: "6px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            mb: 3,
-          }}
-        >
-          {mensaje2.split("").map((char, i) => (
-            <Box
-              key={i}
-              ref={(el) => (letrasRef.current[i] = el)}
-              sx={{
-                background: "#90caf9",
-                color: "#fff",
-                fontWeight: "bold",
-                fontSize: "16px",
-                borderRadius: "6px",
-                padding: "8px 6px",
-                minWidth: "20px",
-                textAlign: "center",
-                boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
-                fontFamily: "'Dancing Script', cursive",
-              }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </Box>
-          ))}
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: "6px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            mb: 3,
-          }}
-        >
-          {mensaje3.split("").map((char, i) => (
-            <Box
-              key={i}
-              ref={(el) => (letrasRef.current[i] = el)}
-              sx={{
-                background: "#90caf9",
-                color: "#fff",
-                fontWeight: "bold",
-                fontSize: "16px",
-                borderRadius: "6px",
-                padding: "8px 6px",
-                minWidth: "20px",
-                textAlign: "center",
-                boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
-                fontFamily: "'Dancing Script', cursive",
-              }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </Box>
-          ))}
+          <img
+            src={meo}
+            alt="Eithan"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </Box>
 
-        {/* Imagen central */}
-      <Box
-        sx={{
-          width: "160px",
-          height: "160px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          border: "5px solid #90caf9",
-          boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
-          zIndex: 3,
-          background: "#fff",
-        }}
-      >
-        <img
-          src={meo} // 🔹 aquí reemplaza por la foto real
-          alt="Eithan"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </Box>
-
-        {/* Nombre destacado */}
+        {/* 🌟 Nombre destacado */}
         <Box
           sx={{
             fontSize: "20px",
@@ -254,7 +165,7 @@ export default function Invitacion({isActive}) {
           ✨ Eithan Romeo Balam Hernandez ✨
         </Box>
 
-        {/* Pastel con vela */}
+        {/* 🎂 Pastel con vela */}
         <Box
           sx={{
             mt: 3,
@@ -264,16 +175,7 @@ export default function Invitacion({isActive}) {
             alignItems: "center",
           }}
         >
-          <div
-            ref={flameRef}
-            style={{
-              width: "14px",
-              height: "20px",
-              background: "radial-gradient(circle at 30% 30%, #ffeb3b, #ff9800)",
-              borderRadius: "50%",
-              marginBottom: "-4px",
-            }}
-          />
+          <div className="flama" /> {/* 🔥 animación con CSS */}
           <div
             style={{
               width: "6px",
