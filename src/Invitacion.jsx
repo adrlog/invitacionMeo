@@ -88,7 +88,7 @@ export default function Invitacion({ isActive }) {
       <Box
         sx={{
           position: "absolute",
-          top: 80,
+          top: 30,
           zIndex: 2,
           height: "88vh",
           width: "100%",
@@ -106,7 +106,6 @@ export default function Invitacion({ isActive }) {
               gap: "6px",
               flexWrap: "wrap",
               justifyContent: "center",
-              mb: 3,
             }}
           >
             {texto.split("").map((char, i) => (
@@ -117,16 +116,15 @@ export default function Invitacion({ isActive }) {
                   animationDelay: `${i * 0.15}s`, // escalonado como en GSAP
                 }}
                 sx={{
-                  background: char==" "? "transparent" : "#90caf9",
-                  color: "#fff",
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: "4rem",
                   fontWeight: "bold",
-                  fontSize: "20px",
-                  borderRadius: "6px",
-                  padding: "8px 6px",
-                  minWidth: "20px",
-                  textAlign: "center",
-                  boxShadow: char == ' '? "" : "0 3px 6px rgba(0,0,0,0.2)",
-                  fontFamily: "'Dancing Script', cursive",
+                  color: "white",
+                  textShadow: `
+                    0 0 10px rgba(255,255,255,0.9),
+                    0 0 20px rgba(192,192,192,0.7),
+                    0 0 40px rgba(160,160,160,0.6)
+                  `,
                 }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -193,7 +191,6 @@ export default function Invitacion({ isActive }) {
           }}
         />
       </Box>
-
       </Box>
     </Box>
   );
