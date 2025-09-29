@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import meo2 from "./assets/meo2.png";
 import familia from "./assets/familia.jpg";
 import "./InvitacionFamiliar.css";
 
@@ -155,6 +156,35 @@ export default function InvitacionFormal({ isActive }) {
           </Box>
         ))}
 
+        <Box
+          sx={{
+            position: "absolute",
+            top: "25%", // más arriba para darle aire
+            left: "50%",
+            transform: "translateX(-50%)", // centrar horizontalmente
+            width: "90%",       // ancho relativo al contenedor
+            maxWidth: "600px",
+            height: "auto",
+            borderRadius: "20px",
+            overflow: "hidden",
+            opacity: 0.15,       // 👈 le da un efecto suave
+            filter: "blur(2px)", // 👈 decorativo, se siente etéreo
+            zIndex: -1,
+          }}
+        >
+          <Box
+            component="img"
+            src={meo2}
+            alt="Decoración"
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+
+      
         {/* 📌 Detalles del evento */}
         <Box
           ref={eventDetails}

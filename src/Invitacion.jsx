@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import meo from "./assets/meo.png";
+import meo2 from "./assets/meo2.png";
 import "./InvitacionCSS.css";
 
 export default function Invitacion({ isActive }) {
@@ -17,9 +18,9 @@ export default function Invitacion({ isActive }) {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   };
 
-  const mensaje = "Mi primer";
-  const mensaje2 = "añito";
-  const mensaje3 = "y bautizo";
+  const mensaje = "Mi 1er Año";
+  const mensaje2 = "&";
+  const mensaje3 = "Bautizo";
 
   return (
     <Box
@@ -116,15 +117,15 @@ export default function Invitacion({ isActive }) {
                   animationDelay: `${i * 0.15}s`, // escalonado como en GSAP
                 }}
                 sx={{
-                  background: "#90caf9",
+                  background: char==" "? "transparent" : "#90caf9",
                   color: "#fff",
                   fontWeight: "bold",
-                  fontSize: "16px",
+                  fontSize: "20px",
                   borderRadius: "6px",
                   padding: "8px 6px",
                   minWidth: "20px",
                   textAlign: "center",
-                  boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+                  boxShadow: char == ' '? "" : "0 3px 6px rgba(0,0,0,0.2)",
                   fontFamily: "'Dancing Script', cursive",
                 }}
               >
@@ -168,48 +169,31 @@ export default function Invitacion({ isActive }) {
           ✨ Eithan Romeo Balam Hernandez ✨
         </Box>
 
-        {/* 🎂 Pastel con vela */}
+      <Box
+        sx={{
+          width: "100%",       // Que ocupe todo el ancho disponible
+          maxWidth: "600px",   // Tamaño máximo del contenedor (ajústalo a tu diseño)
+          height: "300px",     // Altura fija del contenedor
+          borderRadius: "20px",
+          overflow: "hidden",  // Oculta lo que se salga
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mx: "auto",           // Centrar el contenedor
+        }}
+      >
         <Box
+          component="img"
+          src={meo2}
+          alt="Decoración"
           sx={{
-            mt: 3,
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain", // Ajusta la imagen al contenedor sin recortarla
           }}
-        >
-          <div className="flama" /> {/* 🔥 animación con CSS */}
-          <div
-            style={{
-              width: "6px",
-              height: "30px",
-              background: "#d7ccc8",
-            }}
-          />
-          <div
-            style={{
-              width: "80px",
-              height: "50px",
-              background: "#ffccbc",
-              borderRadius: "6px",
-              position: "relative",
-              marginTop: "-2px",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                width: "100%",
-                height: "15px",
-                background: "#ff8a65",
-                borderBottomLeftRadius: "6px",
-                borderBottomRightRadius: "6px",
-              }}
-            />
-          </div>
-        </Box>
+        />
+      </Box>
+
       </Box>
     </Box>
   );
